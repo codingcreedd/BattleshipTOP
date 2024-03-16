@@ -30,6 +30,16 @@ function Ship(){
             setterBoard.appendChild(cell);
         }
 
+        const startGameButton = document.querySelector('.start-button');
+        startGameButton.addEventListener('click', () => {
+            setterBoardContainer.classList.add('hidden');
+            copyShipsIntoMainBoard();
+        });
+
+    }
+
+    function copyShipsIntoMainBoard(){
+
     }
 
     return{
