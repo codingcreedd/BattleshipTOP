@@ -54,6 +54,30 @@ h1{
     background: white;
     padding: 50px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-select-wrapper > div p{
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+.board-select-wrapper .start-button{
+    margin-top: 40px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+.board-select-wrapper .start-button:hover{
+    background: black;
+    color: white;
 }
 
 /*boards*/
