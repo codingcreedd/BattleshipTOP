@@ -8,5 +8,67 @@
 body{
     width: 100%;
     min-height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
+h1{
+    font-size: 3rem;
+    margin-bottom: 100px;
+}
+
+.boards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.board-wrapper{
+    display: flex;
+    gap: 100px;
+}
+
+.board-select-wrapper.hidden{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.board-select-wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.board-select-wrapper > div{
+    background: white;
+    padding: 50px;
+    border-radius: 20px;
+}
+
+/*boards*/
+.board{
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+}
+
+.board .cell{
+    border: 1px solid black;
+}
+
+.board-description{
+    display: flex;
+    gap: 500px;
+    margin-top: 50px;
+}
