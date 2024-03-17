@@ -1,4 +1,4 @@
-class Gameboard{
+export default class Gameboard{
     constructor(){
         this.ships = [];
         this.missedShots = []; //array of coordinates for missed shots
@@ -66,5 +66,3 @@ class Gameboard{
     }
 
 }
-
-module.exports = Gameboard;

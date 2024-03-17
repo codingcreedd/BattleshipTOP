@@ -1,6 +1,12 @@
-function DOM(){
+import Gameboard from "./Gameboard";
+import Player from "./Player";
+import Ship from "./Ship";
 
-    const renderBoards = board => {
+class DOM{
+
+
+
+    renderBoards = board => {
         const boardContainer = document.querySelector(`.${board}`);
         
         for (let i = 1; i <= 100; i++) {
@@ -10,7 +16,7 @@ function DOM(){
         }
     }    
 
-    const setShipBoard = () => {
+    setShipBoard = () => {
         const setterBoardContainer = document.querySelector('.board-select-wrapper');
         setterBoardContainer.classList.remove('hidden');
 
@@ -28,21 +34,24 @@ function DOM(){
             copyShipsIntoMainBoard();
         });
 
-        
+
 
     }
 
+    shipPlacementHandler = () => {
 
-
-    return{
-        renderBoards,
-        setShipBoard
     }
 
-};
+}
 
 const dom = new DOM();
 dom.renderBoards('player-board');
 dom.renderBoards('computer-board');
 dom.setShipBoard();
+
+document.querySelectorAll('.player-board .cell').forEach(cell => {
+    cell.addEventListener('click', shipPlacementHandler);
+})
+
+export default DOM;
 
