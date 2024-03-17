@@ -1,4 +1,3 @@
-
 const Gameboard = require('../src/Gameboard');
 const Ship = require('../src/Ship');
 
@@ -54,4 +53,30 @@ describe('Gameboard', () => {
         
     });
 
-})
+    describe('recieveAttack', () => {
+        it('should return the right ship that got hit', () => {
+            const ship = new Ship(3);
+            const ship2 = new Ship(3);
+            const gameboard = new Gameboard();
+
+            gameboard.placeShip(ship, 0, 3, 'horizontal');
+            gameboard.revieveAttack(0,3);
+            expect(ship.hitCount).toBe(1);
+        });
+
+        it('should record missed shots', () => {
+            const ship = new Ship(3);
+            const gameboard = new Gameboard(2);
+            gameboard.placeShip(ship, 0,1,'vertical');
+
+            gameboard.revieveAttack(2,1);
+            expect(ship.hitCount).toBe(1);
+
+            gameboard.revieveAttack(5,4);
+            expect(gameboard.missedShots[0]).toEqual({row: 5, col: 4});
+        
+        });
+
+    });
+
+});
