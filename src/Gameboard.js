@@ -1,3 +1,5 @@
+import DOM from "./DOM";
+
 export default class Gameboard{
     constructor(){
         this.ships = [];
@@ -7,8 +9,7 @@ export default class Gameboard{
 
 
 
-    placeShip(ship, row, col, orientation){
-
+    placeShip(ship, row, col, orientation, e, playerBoard){
 
         if((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= this.grid.length || col >= this.grid[0].length))
             return "Cant place this ship in these coordinates";
@@ -19,17 +20,21 @@ export default class Gameboard{
         }
 
         this.ships.push(ship);
-        
+        let cell = e.target;
         for(let i = 0; i < ship.length; i++){
             if(orientation === 'horizontal')
             {
                 this.grid[row][col++] = ship;
+                cell.style.backgroundColor = 'lightgray';
+                cell = cell.nextElementSibling;
             }
             else
             {
                 this.grid[row++][col] = ship;
             }
         }
+
+        return 'added';
     }
 
     #coordinatesTaken(shipSize,row, col, orientation){
