@@ -1,11 +1,10 @@
-import Gameboard from "./Gameboard";
-import Player from "./Player";
-import Ship from "./Ship";
+import Gameboard from "../src/Gameboard";
+import Player from "../src/Player";
+import Ship from "../src/Ship";
+
+import '../style.css';
 
 class DOM{
-
-
-
     renderBoards = board => {
         const boardContainer = document.querySelector(`.${board}`);
         
@@ -15,7 +14,7 @@ class DOM{
             boardContainer.appendChild(cell);
         }
     }    
-
+    
     setShipBoard = () => {
         const setterBoardContainer = document.querySelector('.board-select-wrapper');
         setterBoardContainer.classList.remove('hidden');
@@ -39,7 +38,7 @@ class DOM{
     }
 
     shipPlacementHandler = () => {
-
+        
     }
 
 }
@@ -51,7 +50,5 @@ dom.setShipBoard();
 
 document.querySelectorAll('.player-board .cell').forEach(cell => {
     cell.addEventListener('click', shipPlacementHandler);
-})
-
-export default DOM;
+});
 

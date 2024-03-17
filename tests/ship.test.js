@@ -1,6 +1,6 @@
 // ship.test.js
 
-const Ship = require('../src/Ship');
+import Ship from "../src/Ship";
 
 // Test suite for the Ship class
 describe('Ship', () => {
