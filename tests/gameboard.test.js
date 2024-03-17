@@ -1,4 +1,6 @@
+
 const Gameboard = require('../src/Gameboard');
+const Ship = require('../src/Ship');
 
 describe('Gameboard', () => {
     describe('constructor', () => {
@@ -13,4 +15,43 @@ describe('Gameboard', () => {
             expect(gameboard.grid[0].length).toBe(10);
         });
     });
+
+    describe('placeShip', () => {
+        it('should have the right coordinates', () => {
+            const ship = new Ship(5);
+            const gameboard = new Gameboard();
+            expect(gameboard.placeShip(ship, 0, 6, 'horizontal')).toBe('Cant place this ship in these coordinates');
+        });
+
+        it('should have the right coordinates vertically', () => {
+            const ship = new Ship(5);
+            const gameboard = new Gameboard();
+            expect(gameboard.placeShip(ship, 0, 6, 'horizontal')).toBe('Cant place this ship in these coordinates');
+        });
+
+        it('should add the ship into length amount of places', () => {
+            const ship = new Ship(3);
+            const gameboard = new Gameboard();
+            gameboard.placeShip(ship, 0,4, 'horizontal');
+            expect(gameboard.grid[0][4] && gameboard.grid[0][5] && gameboard.grid[0][6]).toBe(ship);
+        });
+
+        it('should be added only if the coordinates are empty', () => {
+            const ship = new Ship(3);
+            const gameboard = new Gameboard();
+            gameboard.placeShip(ship, 0,4, 'horizontal');
+            expect(gameboard.grid[0][4] && gameboard.grid[0][5] && gameboard.grid[0][6]).toBe(ship);
+
+            const ship2 = new Ship(3);
+            expect(gameboard.placeShip(ship2, 0,6, 'horizontal')).toBe('Place already taken');
+        });
+
+        it('should not have row or cols greater than their length', () => {
+            const gameboard = new Gameboard();
+            const ship = new Ship(4);
+            expect(gameboard.placeShip(ship, 0,10,'vertical')).toBe('Cant place this ship in these coordinates');
+        })
+        
+    });
+
 })
