@@ -79,4 +79,20 @@ describe('Gameboard', () => {
 
     });
 
+    describe('All ships are sunk', () => {
+        it('should return if all ships are sunk or not', () => {
+            const gameboard = new Gameboard();
+            const ship = new Ship(2);
+            const ship2 = new Ship(3);
+            
+            gameboard.placeShip(ship, 0,1, 'horizontal');
+            gameboard.placeShip(ship2, 4,5, 'vertical');
+            gameboard.revieveAttack(0,1);
+            gameboard.revieveAttack(0,2);
+            expect(ship.hitCount).toBe(2);
+            expect(gameboard.shipsSunk()).toBe(false);
+            
+        });
+    });
+
 });
