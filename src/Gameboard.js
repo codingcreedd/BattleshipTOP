@@ -1,6 +1,7 @@
 class Gameboard{
     constructor(){
         this.ships = [];
+        this.missedShots = []; //array of coordinates for missed shots
         this.grid = Array.from({ length: 10 }, () => Array(10).fill(null)); //10x10 Array
     }
 
@@ -43,7 +44,16 @@ class Gameboard{
         return false;
     }
 
-    revieveAttack()
+    revieveAttack(row, col){
+        if(this.grid[row][col] === null)
+        {
+            this.missedShots.push({row: row, col: col});
+        }
+        else
+        {
+            this.grid[row][col].hit();
+        }
+    }
 
 }
 
