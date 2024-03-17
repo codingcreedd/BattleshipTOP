@@ -32,7 +32,7 @@ class Gameboard{
         }
     }
 
-    #coordinatesTaken(shipSize,row, col, orientation){
+    #coordinatesTaken(shipSize,row, col, orientation = 'horizontal'){
         for(let i = 1; i <= shipSize; i++){
             if(this.grid[row][col] !== null)
                 return true;
@@ -53,6 +53,16 @@ class Gameboard{
         {
             this.grid[row][col].hit();
         }
+    }
+
+    shipsSunk(){
+        
+        for(let i = 0; i < this.ships.length; i++){
+            if(!this.ships[i].isSunk())
+                return false;
+        }
+
+        return true;
     }
 
 }
