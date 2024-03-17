@@ -4,19 +4,46 @@ class Gameboard{
         this.grid = Array.from({ length: 10 }, () => Array(10).fill(null)); //10x10 Array
     }
 
+
+
     placeShip(ship, row, col, orientation){
-        for(let i = 0, coordinate = 0; i < ship.length; i++){
+
+
+        if((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= this.grid.length || col >= this.grid[0].length))
+            return "Cant place this ship in these coordinates";
+
+
+        if(this.#coordinatesTaken(ship.length, row, col, orientation)){
+                return 'Place already taken'
+        }
+
+        this.ships.push(ship);
+        
+        for(let i = 0; i < ship.length; i++){
             if(orientation === 'horizontal')
             {
-                coordinate = col;
-
+                this.grid[row][col++] = ship;
             }
-            else if(orientation === 'vertical')
+            else
             {
-                coordinate = row;
+                this.grid[row++][col] = ship;
             }
         }
     }
+
+    #coordinatesTaken(shipSize,row, col, orientation){
+        for(let i = 1; i <= shipSize; i++){
+            if(this.grid[row][col] !== null)
+                return true;
+
+
+            (orientation === 'horizontal') ? col++ : row++;
+        }
+
+        return false;
+    }
+
+    revieveAttack()
 
 }
 
