@@ -32,7 +32,7 @@ class Gameboard{
         }
     }
 
-    #coordinatesTaken(shipSize,row, col, orientation = 'horizontal'){
+    #coordinatesTaken(shipSize,row, col, orientation){
         for(let i = 1; i <= shipSize; i++){
             if(this.grid[row][col] !== null)
                 return true;
