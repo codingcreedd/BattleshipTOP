@@ -1,55 +1,27 @@
-function createGameboard() {
-    const blocks = 10;
+class Ship{
+    constructor(length){
+        this.length = length;
+        this.hitNumber = 0;
+        this.sunk = false;
+    }
 
-    function renderInitialBoards(board) {
-        const boardContainer = document.querySelector(`.${board}`);
+    hit(){
+        this.hitNumber++;
+    }
+
+    isSunk(){
+        return this.length === this.hitNumber;
+    }
+
+    
+
+}
+
+class Gameboard{
+
+    
+
+    placeShips(){
         
-        for (let i = 1; i <= 100; i++) {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            boardContainer.appendChild(cell);
-        }
-    }
-
-    return {
-        renderInitialBoards
-    };
-}
-
-function Ship(){
-
-    function setShipPositionsOnBoard(){
-        const setterBoardContainer = document.querySelector('.board-select-wrapper');
-        setterBoardContainer.classList.remove('hidden');
-
-        const setterBoard = setterBoardContainer.querySelector('.board');
-        for(let i = 1; i <= 100; i++)
-        {
-            const cell = document.createElement('div');
-            cell.classList.add('cell');
-            setterBoard.appendChild(cell);
-        }
-
-        const startGameButton = document.querySelector('.start-button');
-        startGameButton.addEventListener('click', () => {
-            setterBoardContainer.classList.add('hidden');
-            copyShipsIntoMainBoard();
-        });
-
-    }
-
-    function copyShipsIntoMainBoard(){
-
-    }
-
-    return{
-        setShipPositionsOnBoard
     }
 }
-
-const gameboard = createGameboard();
-gameboard.renderInitialBoards('player-board');
-gameboard.renderInitialBoards('computer-board');
-
-const ship = Ship();
-ship.setShipPositionsOnBoard();
