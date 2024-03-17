@@ -1,16 +1,16 @@
 class Ship{
     constructor(length){
         this.length = length;
-        this.hitNumber = 0;
+        this.hitCount = 0;
         this.sunk = false;
     }
 
     hit(){
-        this.hitNumber++;
+        this.hitCount++;
     }
 
     isSunk(){
-        return this.length === this.hitNumber;
+        return this.length === this.hitCount;
     }
 
     
