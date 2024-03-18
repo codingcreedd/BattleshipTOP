@@ -37,7 +37,6 @@ export default class DOM{
         const startGameButton = document.querySelector('.start-button');
         startGameButton.addEventListener('click', () => {
             setterBoardContainer.classList.add('hidden');
-            copyShipsIntoMainBoard();
         });
 
 
@@ -55,6 +54,17 @@ export default class DOM{
         const col = index % playerBoard.grid[0].length;
     
         return { row, col };
+    }
+
+    copyShipsToPlayerBoard(setterBoard){ //setter board is the temp board where you place your ships
+        const playerBoard = document.querySelector('.player-board');
+        let setterBoardChildren = document.querySelector(`${setterBoard}`).children;
+        let playerBoardChildren = playerBoard.children;
+        for(let i = 0; i < 100; i++)
+        {
+            if(setterBoardChildren[i].style.backgroundColor === 'lightgray')
+                playerBoardChildren[i].style.backgroundColor = 'lightgray';
+        }
     }
     
 
@@ -104,5 +114,9 @@ document.querySelectorAll('.player-board .cell').forEach(cell => {
         }
         
     });
+});
+
+document.querySelector('.start-button').addEventListener('click', () => {
+    dom.copyShipsToPlayerBoard('.setter-board');
 });
 
