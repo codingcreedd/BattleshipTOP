@@ -21,6 +21,8 @@ export default class Gameboard{
 
         this.ships.push(ship);
         let cell = e.target;
+        let roww = row;
+        const board = e.target.parentNode;
         for(let i = 0; i < ship.length; i++){
             if(orientation === 'horizontal')
             {
@@ -31,6 +33,8 @@ export default class Gameboard{
             else
             {
                 this.grid[row++][col] = ship;
+                cell.style.backgroundColor = 'lightgray';
+                cell = board.querySelector(`.cell:nth-child(${col + 1 + row * 10})`);
             }
         }
 

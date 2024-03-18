@@ -70,6 +70,17 @@ dom.setShipBoard();
 
 let shipSizeCounter = 1;
 
+let axis = 'horizontal';
+const rotateButton = document.querySelector('.rotate-axis');
+
+rotateButton.addEventListener('click', () => {
+    console.log(axis)
+    if(axis === 'horizontal')
+        axis = 'vertical';
+    else
+        axis = 'horizontal';
+})
+
 document.querySelectorAll('.player-board .cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
         const ship = new Ship(dom.currentShip);
@@ -77,7 +88,8 @@ document.querySelectorAll('.player-board .cell').forEach(cell => {
         const board = document.querySelector('.player-board')
         if(playerBoard.ships.length < 5)
         {
-            const shipPlaced = playerBoard.placeShip(ship, coordinates.row, coordinates.col, 'horizontal', e, board);
+        
+            const shipPlaced = playerBoard.placeShip(ship, coordinates.row, coordinates.col, axis, e, board);
         
             if(shipPlaced === 'added')
             {
