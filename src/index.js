@@ -1,5 +1,7 @@
 import DOM from "./DOM";
 import Gameboard from "./Gameboard";
+import Ship from "./Ship";
+import Player from "./Player";
 import '../style.css';
 
 const playerBoard = new Gameboard();
