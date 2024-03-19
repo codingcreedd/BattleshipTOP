@@ -27,8 +27,13 @@ export default class Player{
         const orientation = (this.#getRandomNumber(1, 2) === 1) ? 'horizontal' : 'vertical';
 
         const computerCoordinates = this.#computerPickCoordinates(computerBoard);
-
-        computerBoard.placeShip(ship, computerCoordinates.row, computerCoordinates.col, orientation, e, 'computer');
+        const placedShip = null;
+        
+        while(true){
+            placedShip = computerBoard.placeShip(ship, computerCoordinates.row, computerCoordinates.col, orientation, e, 'computer');
+            if(placedShip === 'added')
+                break;
+        }
     }
 
 }
