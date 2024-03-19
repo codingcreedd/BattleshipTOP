@@ -4,7 +4,7 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     entry: {
-        bundle: ['./src/DOM.js', './src/Gameboard.js', './src/Player.js', './src/Ship.js'],
+        bundle: ['./src/DOM.js', './src/Gameboard.js', './src/Player.js', './src/Ship.js', './src/index.js'],
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
