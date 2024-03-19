@@ -30,6 +30,12 @@ rotateButton.addEventListener('click', () => {
 
 document.querySelectorAll('.setter-board .cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
+
+        
+        const warningMessage = document.getElementById('warning');
+        if(warningMessage.style.display === 'block')
+            warningMessage.style.display = 'none';
+
         const ship = new Ship(dom.currentShip);
         const coordinates = dom.calculateCoordinateOnClick(e, playerBoard);
         const board = document.querySelector('.player-board')
@@ -54,8 +60,19 @@ document.querySelectorAll('.setter-board .cell').forEach(cell => {
 });
 
 document.querySelector('.start-button').addEventListener('click', () => {
-    dom.copyShipsToPlayerBoard('.setter-board');
-    dom.renderComputerShips(computerBoard);
-    dom.startGame();
+    if(playerBoard.ships.length === 5){
+        const setterBoardContainer = document.querySelector('.board-select-wrapper');
+        setterBoardContainer.classList.add('hidden');
+        dom.copyShipsToPlayerBoard('.setter-board');
+        dom.renderComputerShips(computerBoard);
+        //dom.startGame();
+    }
+    else
+    {
+        console.log('LESS THAN 5')
+        const warningMessage = document.getElementById('warning');
+        warningMessage.style.cssText = 'display: block; color: red; font-size: 1.1rem;';
+    }
 });
+
 
