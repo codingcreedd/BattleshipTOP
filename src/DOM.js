@@ -31,14 +31,6 @@ export default class DOM{
             cell.classList.add('cell');
             setterBoard.appendChild(cell);
         }
-
-        const startGameButton = document.querySelector('.start-button');
-        startGameButton.addEventListener('click', () => {
-            setterBoardContainer.classList.add('hidden');
-        });
-
-
-
     }
 
     calculateCoordinateOnClick = (e, playerBoard) => {
