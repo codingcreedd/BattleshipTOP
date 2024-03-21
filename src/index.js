@@ -49,7 +49,6 @@ document.querySelectorAll('.setter-board .cell').forEach(cell => {
                 else if(dom.currentShip === 3 && shipSizeCounter >= 2)
                     dom.currentShip--;
     
-                console.log('ship placed')
                 playerBoard.renderPlayerShips(ship, coordinates.row, coordinates.col, axis, 'player', e);
             }
         }
@@ -66,23 +65,11 @@ document.querySelector('.start-button').addEventListener('click', () => {
         for(let i = 1; i <= 5; i++)
             computer.placeShipComputer(computerBoard, shipSizeObj);
 
-        for(let i = 0; i < 5; i++)
-        {
-            console.log(`Ship ${i + 1}: ${computerBoard.ships[i]}. SHIP LENGTH: ${computerBoard.ships[i].length}`);
-        }
-
-        for(let i = 0; i < 10; i++){
-            for(let j = 0; j < 10; j++){
-                console.log(`${computerBoard.grid[i][j]}, row: ${i} col ${j}, ship length = ${(computerBoard.grid[i][j] !== null) ? computerBoard.grid[i][j].length : null}`);
-            }
-        }
-
         //computer.renderComputerShips(computerBoard);
         dom.startGame(computer, computerBoard, playerBoard);
     }
     else
     {
-        console.log('LESS THAN 5')
         const warningMessage = document.getElementById('warning');
         warningMessage.style.cssText = 'display: block; color: red; font-size: 1.1rem;';
     }

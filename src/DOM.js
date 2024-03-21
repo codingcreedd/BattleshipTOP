@@ -81,7 +81,6 @@ export default class DOM{
 
                 let coordinates = this.calculateCoordinateOnClick(e, computerBoard, '.computer-board');
                 computerBoard.recieveAttack(coordinates.row, coordinates.col);
-                console.log(computerBoard.sunkShips);
                 computer.renderHitOnComputer(computerBoard, coordinates.row, coordinates.col);
                 computer.computer_turn = true;
 

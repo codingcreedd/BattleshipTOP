@@ -19,7 +19,7 @@ export default class Gameboard{
                 cell = cell.nextElementSibling;
             } else {
                 cell.style.backgroundColor = 'lightgray';
-                cell = board.querySelector(`.cell:nth-child(${col + 1 + row * 10})`);
+                cell = board.querySelector(`.cell:nth-child(${col + 1 + ++row * 10})`);
             }
         }
     }

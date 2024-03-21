@@ -9,7 +9,6 @@ export default class Ship{
 
     hit(){
         this.hitCount++;
-        console.log(`hit count: ${this.hitCount}`);
         if(this.length === this.hitCount)this.sunk = true
     }
 
