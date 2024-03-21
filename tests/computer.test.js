@@ -4,7 +4,7 @@ import Gameboard from "../src/Gameboard";
 
 describe('Computer', () => {
     it('should place ships on its grid correctly', () => {
-        const ship = new Ship(3);
+        const ship = new Ship(5);
         const computerBoard = new Gameboard();
         const computer = new Player();
 
