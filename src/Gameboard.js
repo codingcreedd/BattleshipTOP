@@ -5,6 +5,7 @@ export default class Gameboard{
         this.ships = [];
         this.missedShots = []; //array of coordinates for missed shots
         this.grid = Array.from({ length: 10 }, () => Array(10).fill(null)); //10x10 Array
+        this.name = "";
     }
 
     renderPlayerShips(ship, row, col, orientation, player = 'player', e) {
@@ -62,7 +63,7 @@ export default class Gameboard{
         return false;
         }
 
-    revieveAttack(row, col){
+    recieveAttack(row, col){
         if(this.grid[row][col] === null)
         {
             this.missedShots.push({row: row, col: col});
@@ -74,9 +75,9 @@ export default class Gameboard{
     }
 
     shipsSunk(){
-        
+        console.log(this.ships)
         for(let i = 0; i < this.ships.length; i++){
-            if(!this.ships[i].isSunk())
+            if(!this.ships[i].sunk)
                 return false;
         }
 

@@ -87,6 +87,31 @@ export default class Player {
         
     }
 
+    renderHitOnComputer(computerBoard, row, col)
+    {
+        const computerGridCells = document.querySelector('.computer-board').children;
+        if(computerBoard.grid[row][col] !== null)
+            computerGridCells[(10 * row) + col].style.backgroundColor = 'red';
+        else
+            computerGridCells[(10 * row) + col].style.backgroundColor = 'lightgray';
+    }
+
+    attack(playerBoard)
+    {
+        const row = this.#getRandomNumber(0,9);
+        const col = this.#getRandomNumber(0,9);
+
+        playerBoard.recieveAttack(row, col);
+
+        const playerGridCells = document.querySelector('.player-board').children;
+        if(playerBoard.grid[row][col] !== null)
+            playerGridCells[(10 * row) + col].style.backgroundColor = 'red';
+        else
+            playerGridCells[(10 * row) + col].style.backgroundColor = 'blue';
+        
+
+    }
+
     // renderComputerShips(computerBoard) {
     //     const computerGrid = document.querySelector('.computer-board');
     //     let element = computerGrid.firstElementChild;

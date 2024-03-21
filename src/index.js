@@ -38,7 +38,7 @@ document.querySelectorAll('.setter-board .cell').forEach(cell => {
             warningMessage.style.display = 'none';
     
         const ship = new Ship(dom.currentShip);
-        const coordinates = dom.calculateCoordinateOnClick(e, playerBoard);
+        const coordinates = dom.calculateCoordinateOnClick(e, playerBoard, '.board-select-wrapper');
         if(playerBoard.ships.length < 5) {
             const shipPlaced = playerBoard.placeShip(ship, coordinates.row, coordinates.col, axis, 'player');
             if(shipPlaced === 'added') {
@@ -77,8 +77,8 @@ document.querySelector('.start-button').addEventListener('click', () => {
             }
         }
 
-        computer.renderComputerShips(computerBoard);
-        //dom.startGame();
+        //computer.renderComputerShips(computerBoard);
+        dom.startGame(computer, computerBoard, playerBoard);
     }
     else
     {
