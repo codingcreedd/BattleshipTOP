@@ -60,17 +60,31 @@ export default class Player {
     }
     
 
-    placeShipComputer(computerBoard, shipSizeObj) {
+    placeShipComputer(computerBoard, shipSizeObj, orientation) {
         const ship = new Ship(shipSizeObj.shipSize);
+
+        //Pick orientation
+        let orientation;
+        (this.#getRandomNumber(1,2) === 1) ? orientation = 'horizontal' : orientation = 'vertical'; 
         
         //PICK RIGHT COORDINATES
-        const coordinates = this.#computerPickCoordinates(computerBoard, ship); //will hold an object of coordinates
+        let coordinates = this.#computerPickCoordinates(computerBoard, orientation, ship); //will hold an object of coordinates
 
         //PLACE SHIP ON COMPUTER BOARD AFTER RIGHT COORDINATES WERE PICKED
+        let shipPlaced = computerBoard.placeShip(ship, coordinates.row, coordinates.col, orientation, null, 'computer');
 
         //Decrement shipsizeobj.shipSize
-
-
+        if(shipPlaced === 'added')
+        {
+            if(shipSizeObj.shipSize > 3)
+                shipSizeObj.shipSize--;
+            else if(shipSizeObj.shipSize === 3 && shipSizeObj.shipSizeCounter < 2)
+                shipSizeObj.shipSizeCounter++;
+            else if(shipSizeObj.shipSize === 3 && shipSizeObj.shipSizeCounter >= 2)
+                shipSizeObj.shipSize--;
+            
+        }
+        
     }
 
 }
