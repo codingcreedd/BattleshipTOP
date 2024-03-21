@@ -44,7 +44,7 @@ document.querySelectorAll('.setter-board .cell').forEach(cell => {
         if(playerBoard.ships.length < 5)
         {
         
-            const shipPlaced = playerBoard.placeShip(ship, coordinates.row, coordinates.col, axis, e, 'player');
+            const shipPlaced = playerBoard.placeShip(ship, coordinates.row, coordinates.col, axis, 'player');
         
             if(shipPlaced === 'added')
             {
@@ -54,6 +54,8 @@ document.querySelectorAll('.setter-board .cell').forEach(cell => {
                     shipSizeCounter++;
                 else if(dom.currentShip === 3 && shipSizeCounter >= 2)
                     dom.currentShip--;
+
+                playerBoard.renderPlayerShips(ship, coordinates.row, coordinates.col, axis, 'player');
                 
             }
         }
