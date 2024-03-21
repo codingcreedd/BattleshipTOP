@@ -12,16 +12,22 @@ export default class Gameboard{
     placeShip(ship, row, col, orientation, e, player){
 
         if((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= this.grid.length || col >= this.grid[0].length))
-            return "Cant place this ship in these coordinates";
+            {console.log('SHIP cant be here');return "Cant place this ship in these coordinates";}
 
 
         if(this.#coordinatesTaken(ship.length, row, col, orientation)){
-                return 'Place already taken'
+            console.log('ship taken')
+                return 'Place already taken';
         }
 
         this.ships.push(ship);
-        let cell = e.target;
-        const board = e.target.parentNode;
+        let cell = null;
+        let board = null;
+
+        if(player === 'player'){
+            cell = e.target;
+            board = e.target.parentNode;
+        }
 
         for(let i = 0; i < ship.length; i++){
             if(orientation === 'horizontal')
@@ -47,17 +53,19 @@ export default class Gameboard{
         return 'added';
     }
 
-    #coordinatesTaken(shipSize,row, col, orientation){
-        for(let i = 1; i <= shipSize; i++){
-            if(this.grid[row][col] !== null)
-                return true;
-
-
-            (orientation === 'horizontal') ? col++ : row++;
+    #coordinatesTaken(shipSize,row, col, orientation) {
+        for (let i = 0; i < shipSize; i++) {
+          if (this.grid[row][col] !== null)
+            return true;
+        
+          if (orientation === 'horizontal')
+            col++;
+          else
+            row++;
         }
-
+        
         return false;
-    }
+        }
 
     revieveAttack(row, col){
         if(this.grid[row][col] === null)

@@ -7,6 +7,9 @@ import '../style.css';
 const playerBoard = new Gameboard();
 const computerBoard = new Gameboard();
 
+const computer = new Player();
+const shipSizeObj = {shipSize: 5, shipSizeCounter: 1};
+
 const dom = new DOM(playerBoard, computerBoard);
 dom.renderBoards('player-board');
 dom.renderBoards('computer-board');
@@ -38,7 +41,6 @@ document.querySelectorAll('.setter-board .cell').forEach(cell => {
 
         const ship = new Ship(dom.currentShip);
         const coordinates = dom.calculateCoordinateOnClick(e, playerBoard);
-        const board = document.querySelector('.player-board')
         if(playerBoard.ships.length < 5)
         {
         
@@ -64,6 +66,22 @@ document.querySelector('.start-button').addEventListener('click', () => {
         const setterBoardContainer = document.querySelector('.board-select-wrapper');
         setterBoardContainer.classList.add('hidden');
         dom.copyShipsToPlayerBoard('.setter-board');
+
+        //Computer
+        for(let i = 1; i <= 5; i++)
+            computer.placeShipComputer(computerBoard, shipSizeObj);
+
+        for(let i = 0; i < 5; i++)
+        {
+            console.log(`Ship ${i + 1}: ${computerBoard.ships[i]}. SHIP LENGTH: ${computerBoard.ships[i].length}`);
+        }
+
+        for(let i = 0; i < 10; i++){
+            for(let j = 0; j < 10; j++){
+                console.log(`${computerBoard.grid[i][j]}, row: ${i} col ${j}`);
+            }
+        }
+
         dom.renderComputerShips(computerBoard);
         //dom.startGame();
     }

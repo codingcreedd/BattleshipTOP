@@ -58,8 +58,25 @@ export default class DOM{
     }
 
     
-    renderComputerShips(computerBoard){
+    renderComputerShips(computerGameBoard){
+        let computerBoardCell = document.querySelectorAll('.computer-board .cell');
+        let i = 0, cellCounter = 0;
+        while(computerBoardCell && i < computerGameBoard.grid.length){
+            let j = 0;
+            while(j < computerGameBoard.grid[i].length){
+                if(computerGameBoard.grid[i][j] !== null)   
+                    computerBoardCell[(i * 10) + j].style.backgroundColor = 'lightgray';
 
+                cellCounter++;
+                j++;
+            }
+
+            computerBoardCell = computerBoardCell.nextElementSibling;
+            if(i <= 9) i++;
+
+            cellCounter++;
+
+        }
     }
 
 }

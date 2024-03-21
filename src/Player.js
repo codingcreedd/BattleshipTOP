@@ -1,4 +1,7 @@
-export default class Player{
+import Ship from "./Ship";
+import Gameboard from "./Gameboard";
+
+export default class Player {
     constructor(){
         this.computer_turn = false; 
     }
@@ -7,33 +10,41 @@ export default class Player{
         return Math.random() * (max - min) + min;
       }
       
-
-    #computerPickCoordinates(computerBoard){
-        const row = 0, col = 0;
-        for(let i = 1; i <= 5; i++){
-            while(true){
-                row = this.#getRandomNumber(0, 9);
-                col = this.#getRandomNumber(0,9);
-                if(computerBoard.grid[row][col] === null)
-                    break;
-            }
-        }
-
-        return {row, col};
+    #checkValidationVH(board, orientation, ship, row, col) //checks if a row and col is valid for 10 rows and 10 columns vertically (V) and horizontally (H)
+    {
+        return ((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= board.grid.length || col >= board.grid[0].length));
     }
 
-    computerPlaceShips(computerBoard, shipSize){
-        const ship = new Ship(shipSize);
-        const orientation = (this.#getRandomNumber(1, 2) === 1) ? 'horizontal' : 'vertical';
+    #checkEmptyPlaces(board, row, col)
+    {
 
-        const computerCoordinates = this.#computerPickCoordinates(computerBoard);
-        const placedShip = null;
-        
+    }
+
+    #computerPickCoordinates(computerBoard, orientation, ship){
+        let row = 0, col = 0;
         while(true){
-            placedShip = computerBoard.placeShip(ship, computerCoordinates.row, computerCoordinates.col, orientation, e, 'computer');
-            if(placedShip === 'added')
-                break;
+            row = this.#getRandomNumber(0,9);
+            col = this.#getRandomNumber(0,9);
+
+            if(!this.#checkValidationVH(computerBoard, orientation, ship, row, col) /*||*/){}
+
         }
+
+        return {row: row, col: col};
+    }
+    
+
+    placeShipComputer(computerBoard, shipSizeObj) {
+        const ship = new Ship(shipSizeObj.shipSize);
+        
+        //PICK RIGHT COORDINATES
+        const coordinates = this.#computerPickCoordinates(computerBoard, ship);
+
+        //PLACE SHIP ON COMPUTER BOARD AFTER RIGHT COORDINATES WERE PICKED
+
+        //Decrement shipsizeobj.shipSize
+
+
     }
 
 }
