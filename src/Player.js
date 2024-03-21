@@ -10,9 +10,14 @@ export default class Player {
         return Math.random() * (max - min) + min;
       }
       
-    #checkValidationVH(board, orientation, ship, row, col) //checks if a row and col is valid for 10 rows and 10 columns vertically (V) and horizontally (H)
+    #checkValidationVH(orientation, ship, row, col) //checks if a row and col is valid for 10 rows and 10 columns vertically (V) and horizontally (H)
     {
-        return ((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= board.grid.length || col >= board.grid[0].length));
+        return ((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical'));
+    }
+
+    #checkValidationOutOfBounds(board, row, col)
+    {
+        return row >= board.grid.length || col >= board.grid[0].length;
     }
 
     #checkEmptyPlaces(board, row, col)
@@ -26,7 +31,10 @@ export default class Player {
             row = this.#getRandomNumber(0,9);
             col = this.#getRandomNumber(0,9);
 
-            if(!this.#checkValidationVH(computerBoard, orientation, ship, row, col) /*||*/){}
+            if(!this.#checkValidationVH(orientation, ship, row, col) && !this.#checkValidationOutOfBounds(computerBoard, row, col))
+            {
+                
+            }
 
         }
 
