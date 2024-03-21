@@ -7,8 +7,8 @@ export default class Player {
     }
 
     #getRandomNumber(min, max) {
-        return Math.random() * (max - min) + min;
-      }
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
       
     #checkValidationVH(orientation, ship, row, col) //checks if a row and col is valid for 10 rows and 10 columns vertically (V) and horizontally (H)
     {
