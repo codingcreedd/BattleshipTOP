@@ -4,6 +4,7 @@ import Gameboard from "./Gameboard";
 export default class Player {
     constructor(){
         this.computer_turn = false; 
+        this.current_hit = false;
     }
 
     #getRandomNumber(min, max) {
@@ -104,10 +105,14 @@ export default class Player {
         playerBoard.recieveAttack(row, col);
 
         const playerGridCells = document.querySelector('.player-board').children;
-        if(playerBoard.grid[row][col] !== null)
+        if(playerBoard.grid[row][col] !== null){
             playerGridCells[(10 * row) + col].style.backgroundColor = 'red';
-        else
+            this.current_hit = true;
+        }
+        else{
             playerGridCells[(10 * row) + col].style.backgroundColor = 'blue';
+            this.current_hit = false;
+        }
         
 
     }
