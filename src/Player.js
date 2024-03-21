@@ -117,18 +117,4 @@ export default class Player {
 
     }
 
-    // renderComputerShips(computerBoard) {
-    //     const computerGrid = document.querySelector('.computer-board');
-    //     let element = computerGrid.firstElementChild;
-
-    //     for(let i = 0; i < computerBoard.grid.length; i++){
-    //         for(let j = 0; j < computerBoard.grid[0].length; j++){
-    //             if(computerBoard.grid[i][j] !== null)
-    //             element.style.backgroundColor = 'lightgray';
-
-    //             element = element.nextElementSibling;
-    //         }
-    //     }
-    // }
-
 }
