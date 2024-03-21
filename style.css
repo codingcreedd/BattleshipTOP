@@ -96,3 +96,47 @@ h1{
     gap: 500px;
     margin-top: 50px;
 }
+
+/*--------START GAME WRAPPER----------*/
+
+#start-game-wrapper{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bolder;
+
+    background: rgba(0,0,0,0.5);
+
+}
+
+/* DISABLE EVENTS ON SELECTED ELEMENT */
+.no-event{
+    pointer-events: none;
+}
+
+/* Game finished div */
+.game-finished{
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    font-weight: bolder;
+
+    background: rgba(0,0,0,0.5);
+}
+
