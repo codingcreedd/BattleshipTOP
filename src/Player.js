@@ -60,7 +60,7 @@ export default class Player {
     }
     
 
-    placeShipComputer(computerBoard, shipSizeObj, orientation) {
+    placeShipComputer(computerBoard, shipSizeObj) {
         const ship = new Ship(shipSizeObj.shipSize);
 
         //Pick orientation
