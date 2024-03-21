@@ -11,22 +11,21 @@ export default class Gameboard{
 
     placeShip(ship, row, col, orientation, e, player){
 
-        if((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= this.grid.length || col >= this.grid[0].length))
+        if(player === 'player'){
+            if((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= this.grid.length || col >= this.grid[0].length))
             {console.log('SHIP cant be here');return "Cant place this ship in these coordinates";}
 
 
-        if(this.#coordinatesTaken(ship.length, row, col, orientation)){
-            console.log('ship taken')
-                return 'Place already taken';
+            if(this.#coordinatesTaken(ship.length, row, col, orientation)){
+                console.log('ship taken')
+                    return 'Place already taken';
+            }
         }
 
         this.ships.push(ship);
-        let cell = null;
-        let board = null;
-
         if(player === 'player'){
-            cell = e.target;
-            board = e.target.parentNode;
+            var cell = e.target;
+            var board = e.target.parentNode;
         }
 
         for(let i = 0; i < ship.length; i++){
