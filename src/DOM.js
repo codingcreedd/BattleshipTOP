@@ -75,7 +75,7 @@ export default class DOM{
         
         //PLAYER'S TURN
         document.querySelector('.computer-board').addEventListener('click', e => {
-            if(!computer.computer_turn){
+            if(!computer.computer_turn && !(e.target.style.backgroundColor === 'red' || e.target.style.backgroundColor === 'lightgray')){
 
                 computerGrid.classList.remove('no-event');
 
