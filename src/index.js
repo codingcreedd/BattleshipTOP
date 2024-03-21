@@ -77,7 +77,7 @@ document.querySelector('.start-button').addEventListener('click', () => {
             }
         }
 
-        dom.renderComputerShips(comcomputerBoardputerBoard);
+        //dom.renderComputerShips(computerBoard);
         //dom.startGame();
     }
     else
