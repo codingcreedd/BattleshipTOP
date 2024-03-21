@@ -7,9 +7,27 @@ export default class Gameboard{
         this.grid = Array.from({ length: 10 }, () => Array(10).fill(null)); //10x10 Array
     }
 
+    renderPlayerShips(ship, row, col, orientation, e)
+    {
+        let cell = e.target;
+        let board = cell.parentNode;
 
+        
+        for(let i = 0; i < ship.length; i++){
+            if(orientation === 'horizontal')
+            {
+                cell.style.backgroundColor = 'lightgray';
+                cell = cell.nextElementSibling;
+            }
+            else
+            {
+                cell.style.backgroundColor = 'lightgray';
+                cell = board.querySelector(`.cell:nth-child(${col + 1 + row * 10})`);
+            }
+        }
+    }
 
-    placeShip(ship, row, col, orientation, e, player){
+    placeShip(ship, row, col, orientation, player = 'player'){
 
         if(player === 'player'){
             if((10 - col < ship.length && orientation === 'horizontal') || (10 - row < ship.length && orientation === 'vertical') || (row >= this.grid.length || col >= this.grid[0].length))
@@ -18,35 +36,17 @@ export default class Gameboard{
 
             if(this.#coordinatesTaken(ship.length, row, col, orientation)){
                 console.log('ship taken')
-                    return 'Place already taken';
+                return 'Place already taken';
             }
         }
 
         this.ships.push(ship);
-        if(player === 'player'){
-            var cell = e.target;
-            var board = e.target.parentNode;
-        }
 
         for(let i = 0; i < ship.length; i++){
             if(orientation === 'horizontal')
-            {
                 this.grid[row][col++] = ship;
-                if(player === 'player')
-                {
-                    cell.style.backgroundColor = 'lightgray';
-                    cell = cell.nextElementSibling;
-                }
-            }
             else
-            {
                 this.grid[row++][col] = ship;
-                if(player === 'player')
-                {
-                    cell.style.backgroundColor = 'lightgray';
-                    cell = board.querySelector(`.cell:nth-child(${col + 1 + row * 10})`);
-                }
-            }
         }
 
         return 'added';
