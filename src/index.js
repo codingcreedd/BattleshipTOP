@@ -33,33 +33,26 @@ rotateButton.addEventListener('click', () => {
 
 document.querySelectorAll('.setter-board .cell').forEach(cell => {
     cell.addEventListener('click', (e) => {
-
-        
         const warningMessage = document.getElementById('warning');
         if(warningMessage.style.display === 'block')
             warningMessage.style.display = 'none';
-
+    
         const ship = new Ship(dom.currentShip);
         const coordinates = dom.calculateCoordinateOnClick(e, playerBoard);
-        if(playerBoard.ships.length < 5)
-        {
-        
+        if(playerBoard.ships.length < 5) {
             const shipPlaced = playerBoard.placeShip(ship, coordinates.row, coordinates.col, axis, 'player');
-        
-            if(shipPlaced === 'added')
-            {
+            if(shipPlaced === 'added') {
                 if(dom.currentShip > 3)
                     dom.currentShip--;
                 else if(dom.currentShip === 3 && shipSizeCounter < 2)
                     shipSizeCounter++;
                 else if(dom.currentShip === 3 && shipSizeCounter >= 2)
                     dom.currentShip--;
-
-                playerBoard.renderPlayerShips(ship, coordinates.row, coordinates.col, axis, 'player');
-                
+    
+                console.log('ship placed')
+                playerBoard.renderPlayerShips(ship, coordinates.row, coordinates.col, axis, 'player', e);
             }
         }
-        
     });
 });
 
@@ -84,7 +77,7 @@ document.querySelector('.start-button').addEventListener('click', () => {
             }
         }
 
-        dom.renderComputerShips(computerBoard);
+        dom.renderComputerShips(comcomputerBoardputerBoard);
         //dom.startGame();
     }
     else

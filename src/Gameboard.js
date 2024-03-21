@@ -7,20 +7,16 @@ export default class Gameboard{
         this.grid = Array.from({ length: 10 }, () => Array(10).fill(null)); //10x10 Array
     }
 
-    renderPlayerShips(ship, row, col, orientation, e)
-    {
+    renderPlayerShips(ship, row, col, orientation, player = 'player', e) {
         let cell = e.target;
+        if(!cell) return;
         let board = cell.parentNode;
-
-        
+    
         for(let i = 0; i < ship.length; i++){
-            if(orientation === 'horizontal')
-            {
+            if(orientation === 'horizontal'){
                 cell.style.backgroundColor = 'lightgray';
                 cell = cell.nextElementSibling;
-            }
-            else
-            {
+            } else {
                 cell.style.backgroundColor = 'lightgray';
                 cell = board.querySelector(`.cell:nth-child(${col + 1 + row * 10})`);
             }
