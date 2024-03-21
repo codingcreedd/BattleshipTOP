@@ -8,7 +8,10 @@ describe('Computer', () => {
         const computerBoard = new Gameboard();
         const computer = new Player();
 
-        computer.computerPlaceShips(computerBoard, )
+        for(let i = 0; i < 5; i++)
+            computer.placeShipComputer(computerBoard, {shipSize: ship.length, shipSizeCounter: 1});
+
+        expect(computerBoard.ships.length).toBe(5);
 
     })
 })
