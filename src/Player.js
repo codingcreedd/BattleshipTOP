@@ -20,9 +20,26 @@ export default class Player {
         return row >= board.grid.length || col >= board.grid[0].length;
     }
 
-    #checkEmptyPlaces(board, row, col)
+    #checkEmptyPlaces(board, row, col, orientation, ship) //the places from row - col to ship.length row or col must be empty for a ship to be placed
     {
+        if(orientation === 'horizontal')
+        {
+            for(let i = 1; i <= ship.length; i++){
+                if(board.grid[row][col++] !== null)
+                    return false;
+            }
 
+            return true;
+        }
+        else
+        {
+            for(let i = 1; i <= ship.length; i++){
+                if(board.grid[row++][col] !== null)
+                    return false;
+            }
+
+            return true;
+        }
     }
 
     #computerPickCoordinates(computerBoard, orientation, ship){
@@ -31,9 +48,10 @@ export default class Player {
             row = this.#getRandomNumber(0,9);
             col = this.#getRandomNumber(0,9);
 
-            if(!this.#checkValidationVH(orientation, ship, row, col) && !this.#checkValidationOutOfBounds(computerBoard, row, col))
+            if(!this.#checkValidationVH(orientation, ship, row, col) && !this.#checkValidationOutOfBounds(computerBoard, row, col)
+            && this.#checkEmptyPlaces(computerBoard, row, col, orientation, ship))
             {
-                
+                break;
             }
 
         }
@@ -46,7 +64,7 @@ export default class Player {
         const ship = new Ship(shipSizeObj.shipSize);
         
         //PICK RIGHT COORDINATES
-        const coordinates = this.#computerPickCoordinates(computerBoard, ship);
+        const coordinates = this.#computerPickCoordinates(computerBoard, ship); //will hold an object of coordinates
 
         //PLACE SHIP ON COMPUTER BOARD AFTER RIGHT COORDINATES WERE PICKED
 
