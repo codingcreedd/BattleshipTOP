@@ -37,6 +37,7 @@ export default class Gameboard{
             }
         }
 
+        ship.orientation = orientation;
         this.ships.push(ship);
 
         for(let i = 0; i < ship.length; i++){
