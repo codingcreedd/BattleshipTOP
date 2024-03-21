@@ -73,11 +73,11 @@ document.querySelector('.start-button').addEventListener('click', () => {
 
         for(let i = 0; i < 10; i++){
             for(let j = 0; j < 10; j++){
-                console.log(`${computerBoard.grid[i][j]}, row: ${i} col ${j}`);
+                console.log(`${computerBoard.grid[i][j]}, row: ${i} col ${j}, ship length = ${(computerBoard.grid[i][j] !== null) ? computerBoard.grid[i][j].length : null}`);
             }
         }
 
-        //dom.renderComputerShips(computerBoard);
+        computer.renderComputerShips(computerBoard);
         //dom.startGame();
     }
     else
